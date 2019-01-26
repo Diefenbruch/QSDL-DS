@@ -1,0 +1,73 @@
+1. (Un-)Abhaengigkeitsrelation zwischen Prozesstypen
+
+   - welcher Prozess sendet an welchen anderen Prozess
+     welche Signaltypen ?
+     
+2. Erkennen welche Datentypen von den Prozessen und
+   Blocken wirklich verwendet werden. Verringerung
+   der Codeabhaengigkeit fuer inkrementelle Codegenerierung
+   
+3. Persistente Objekte (speichern + Wiederherstellen aller Objekte)
+
+4. Export von SDL/PR
+
+5. ASN/1: fehlende Klassen implementieren.
+
+6. SDL/92: fehlende Klassen implementieren. DS*Component-Klassen
+   duerften hier schon das meiste liefern.
+   
+7. Abgleich mit Olaf Zwintscher (DOC++)
+
+8. Dokumentation
+
+   * Klassenhierarchie (graphisch)
+   
+   * Sourcecode-Dokumentation
+   
+9. WICHTIG: Die DS enthaelt bereits sehr viele Such- und
+   Hilfsmethoden. Daher immer erst genau schauen, ob
+   bestimmte Methoden nicht bereits exisitern. Besonders
+   in DSObject sind sehr viele Hilfsmethoden enthalten!!!
+   
+10. Der Routing-Algorithmus fuer Signale und Dienstanforderungen
+    ist semantisch nicht konform zum SDL-Standard.
+
+    Beispiel: OUTPUT signal VIA sr1, ch1, sr2;
+
+    hier: sr1, sr2 SDL-Signalrouten
+          ch1      SDL-Kanal
+
+    QUEST-Semantik: Es ist nur eine Verbindung moeglich,
+                    bei der das Signal _ausschliesslich_
+                    ueber die angegebenen Kommunikations-
+                    verbindungen laeuft. Dabei muss die
+                    Reihenfolge der Signalrouten/Kanaele
+                    genauso wie spezifiziert sein, d.h.
+                    das Signal laeuft zunaechst ueber sr1,
+                    dann ueber ch1 und schliesslich ueber ch1.
+                    Ansonsten duerfen keine anderen Signalrouten
+                    oder Kanaele benutzt werden.
+
+    (korrekte) SDL-Semantik: Alle Verbindungen, in denen
+                             sr1, ch1 und sr2 _vorkommen_
+                             sind moeglich. Dies koennen
+                             sehr viele sein. Erfordert
+                             eine Erreichbarkeitsanalyse auf
+                             der statischen Systemstruktur.
+
+    Weiteres Problem: der z.Z. implementierte Algorithmus
+                      (er befindet sich in DSOutput) kann
+                      nicht mit Block-Substructures umgehen.
+
+11. Die virtuellen Run()-Methoden sollten als nicht-virtuell
+    umdefiniert werden. Es reicht wenn die Write-Methoden
+    virtuell sind!
+
+12. DSGenerator in DSGeneratorTransformation umnennen (auch
+    in Codegenerator anpassen)
+
+13. assert() Makro Verwendung ueberpruefen, damit Code auch
+    mit NDEBUG uebersetzbar wird!
+
+14. Linearisierung (-L) mit /home/qsdl/specifications/tcp/tcp.pr
+    testen.
