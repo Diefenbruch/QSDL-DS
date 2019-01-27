@@ -157,8 +157,11 @@ UNCOMPRESS = gzip -d
                          # Befehl zum Dekomprimieren von Dateien
 COMPRESS_SUFFIX = gz
                          # Endung welche das Komprimierungsprogramm verwendet
-EDITOR = jove
+EDITOR = nano
                          # Name des verwendeten Editors
+
+GIT = git		 # git
+
 TAGS = ctags -t
                          # Programm zum Erzeugen von Sourcebrowsing-Infos
                          # (wo ist eine bestimmte Funktion definiert?, etc)
@@ -285,23 +288,23 @@ endif
 
 LIST_HEADERS =\
 	DSBaseList.h\
-  DSBaseList.tmpl.h\
+	DSBaseList.tmpl.h\
 	DSBaseListElem.h\
-  DSBaseListElem.tmpl.h\
+	DSBaseListElem.tmpl.h\
 	DSList.h\
-  DSList.tmpl.h\
+	DSList.tmpl.h\
 	DSListElem.h\
-  DSListElem.tmpl.h\
+	DSListElem.tmpl.h\
 	DSRefList.h\
-  DSRefList.tmpl.h\
-  DSRefListElem.h\
-  DSRefListElem.tmpl.h\
+	DSRefList.tmpl.h\
+	DSRefListElem.h\
+	DSRefListElem.tmpl.h\
 	DSKeyList.h\
-  DSKeyList.tmpl.h\
+	DSKeyList.tmpl.h\
 	DSKeyListElem.h\
 	DSKeyListElem.tmpl.h\
 	DSStack.h\
-  DSStack.tmpl.h
+	DSStack.tmpl.h
 
 SDL_HEADERS =\
 	DSAction.h\
@@ -679,6 +682,22 @@ install-includes:  $(SDL_HEADERS) $(QSDL_HEADERS) $(LIST_HEADERS)
 install: install-includes install-lib
 
 release: install
+
+git-pull:
+	@echo Pulling sources form github...
+	$(GIT) pull
+
+git-add:
+	@echo Staging changed local sources...
+	$(GIT) add -A
+
+git-commit:
+	@echo Committing changed local sources...
+	$(GIT) commit
+
+git-push:
+	@echo Pushing sources to github...
+	$(GIT) push origin master
 
 postscript: $(DS_HEADERS) $(PSDIR)
 	@for X in $(DS_HEADERS); do \
