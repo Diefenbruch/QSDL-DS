@@ -8,7 +8,7 @@
  * Grundlegenden Datentypen fuer das (Q)SDL-Depository
  *************************************************************************/
 
-#define DS_VERSION               "1.6.0"
+#define DS_VERSION               "1.6.1"
 #define DS_DATE                  "$Date: 1998/01/13 12:48:22 $"
 
 #define DS_CREATE_ENV 1
