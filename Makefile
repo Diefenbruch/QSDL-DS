@@ -21,6 +21,10 @@
 # -) make depend    : alle Abhaengigkeiten zwischen Projektdateien feststellen
 # -) make clean     : Objektdateien (*.o) und temporaere Dateien entfernen
 # -) make veryclean : make clean + rcsclean + alle Postscriptdateien entfernen
+# -) make git-pull  : pull sources from github
+# -) make git-push  : push sources to github
+# -) make git-add   : add changed sources to git staging
+# -) make git-commit: commit staged sources to git HEAD
 # -) make postscript: Postscriptdateien aus alle *.h Dateien erzeugen
 # -) make print     : alle *.h Dateien ausdrucken
 # -) make backup    : Backup von allen *.cpp *.h Dateien und dem Makefile
@@ -697,7 +701,7 @@ git-commit:
 
 git-push:
 	@echo Pushing sources to github...
-	$(GIT) push origin master
+	$(GIT) push 
 
 postscript: $(DS_HEADERS) $(PSDIR)
 	@for X in $(DS_HEADERS); do \
