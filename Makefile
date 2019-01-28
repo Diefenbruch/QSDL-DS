@@ -663,6 +663,16 @@ $(PSDIR):
 		echo Creating $(PSDIR) ...; \
 		$(MKDIR) $(PSDIR); fi
 
+$(INCDIR): 
+	@if [ ! \( -d $(INCDIR) \) ]; then \
+		echo Creating $(INCDIR) ...; \
+		$(MKDIR) $(INCDIR); fi
+
+$(INCDIR)/DS: $(INCDIR)
+	@if [ ! \( -d $(INCDIR)/DS \) ]; then \
+		echo Creating $(INCDIR)/DS ...; \
+		$(MKDIR) $(INCDIR)/DS; fi
+
 $(DEPFILE):
 	$(TOUCH) $(DEPFILE)
 
@@ -672,7 +682,7 @@ install-lib: $(OUTPUT) $(LIBDIR)
 	@echo Installing new library in $(LIBDIR) ...
 	$(CP)  $(OUTPUT) $(LIBDIR)
 
-install-includes:  $(SDL_HEADERS) $(QSDL_HEADERS) $(LIST_HEADERS)
+install-includes:  $(SDL_HEADERS) $(QSDL_HEADERS) $(LIST_HEADERS) $(INCDIR)/DS
 	@echo Deleting old include files from $(INCDIR)/DS ...
 	-$(RM) $(INCDIR)/DS/*.h
 	@echo Installing new include files in $(INCDIR)/DS ...
