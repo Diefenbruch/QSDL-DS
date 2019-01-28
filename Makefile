@@ -2,7 +2,7 @@
 # Makefile fuer die QUEST-Datenstruktur
 #
 #
-# $Author: hirche $
+# Author: Marc Diefenbruch
 # $Date: 1998/02/19 17:03:08 $
 #
 # (C) 1995 Universitaet GH Essen
