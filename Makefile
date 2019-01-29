@@ -627,6 +627,8 @@ $(OUTPUT): $(OBJS)
 
 all: $(OUTPUT) test
 
+$(OBJS): $(OBJDIR)
+
 $(OBJDIR)/%.o: %.cpp
 	@echo Compiling $< ...
 	$(C++) -c $(CFLAGS) $(TFLAGS) $(PFLAGS) $(DEFINES) $(INCLUDES) $< -o $@ 2>> $(LOGFILE)
