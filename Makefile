@@ -614,9 +614,11 @@ TEST_OBJS = $(addprefix $(OBJDIR)/, $(TEST_SRCS:.cpp=.o))
 
 OBJS = $(TEMPLATES_OBJS) $(SDL_OBJS) $(QSDL_OBJS)
 
-######################
-# 7. Makefileregeln: #
-######################
+##################################################
+# 7. Makefileregeln:                             #
+#    Abhängigkeiten hinter dem | Symbol sind     #
+#    logische aber keine Zeit-Abhängigkeiten!    #
+##################################################
 
 default: clean-rubbish $(OBJDIR) $(OUTPUT)
 
@@ -628,7 +630,7 @@ $(OUTPUT): $(OBJS)
 
 all: $(OUTPUT) test
 
-$(OBJS): $(OBJDIR)
+$(OBJS): | $(OBJDIR)
 
 $(OBJDIR)/%.o: %.cpp
 	@echo Compiling $< ...
@@ -646,32 +648,32 @@ $(OBJBASEDIR):
 		echo Creating $(OBJBASEDIR) ...; \
 		$(MKDIR) $(OBJBASEDIR); fi
 
-$(OBJDIR): $(OBJBASEDIR)
+$(OBJDIR): | $(OBJBASEDIR)
 	@if [ ! \( -d $(OBJDIR) \) ]; then \
 		echo Creating $(OBJDIR) ...; \
 		$(MKDIR) $(OBJDIR); fi
 
-$(BINDIR): 
+$(BINDIR):
 	@if [ ! \( -d $(BINDIR) \) ]; then \
 		echo Creating $(BINDIR) ...; \
 		$(MKDIR) $(BINDIR); fi
 
-$(LIBDIR): 
+$(LIBDIR):
 	@if [ ! \( -d $(LIBDIR) \) ]; then \
 		echo Creating $(LIBDIR) ...; \
 		$(MKDIR) $(LIBDIR); fi
 
-$(PSDIR): 
+$(PSDIR):
 	@if [ ! \( -d $(PSDIR) \) ]; then \
 		echo Creating $(PSDIR) ...; \
 		$(MKDIR) $(PSDIR); fi
 
-$(INCDIR): 
+$(INCDIR):
 	@if [ ! \( -d $(INCDIR) \) ]; then \
 		echo Creating $(INCDIR) ...; \
 		$(MKDIR) $(INCDIR); fi
 
-$(INCDIR)/DS: $(INCDIR)
+$(INCDIR)/DS: | $(INCDIR)
 	@if [ ! \( -d $(INCDIR)/DS \) ]; then \
 		echo Creating $(INCDIR)/DS ...; \
 		$(MKDIR) $(INCDIR)/DS; fi
